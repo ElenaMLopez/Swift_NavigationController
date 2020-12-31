@@ -1,43 +1,33 @@
-//
-//  ViewController.swift
-//  Navigationcontroller
-//
-//  Created by Elena on 21/11/2020.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
-
+    var colorSeted: UIColor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     @IBAction func ButtonGreyAction(_ sender: Any) {
-        performSegue(withIdentifier: "VCGrey", sender: self)
+        self.colorSeted = .systemGray2
+        performSegue(withIdentifier: "VCSecondary", sender: self)
     }
     @IBAction func ButtonGreenAction(_ sender: Any) {
-        performSegue(withIdentifier: "VCGreen", sender: self)
+        self.colorSeted = .green
+        performSegue(withIdentifier: "VCSecondary", sender: self)
     }
     @IBAction func ButtonPinkAction(_ sender: Any) {
-        performSegue(withIdentifier: "VCPink", sender: self)
+        self.colorSeted = .systemPink
+        performSegue(withIdentifier: "VCSecondary", sender: self)
     }
-    
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "VCGrey" {
-            if let destination = segue.destination as? ViewControllerGrey{
+        
+        if segue.identifier == "VCSecondary"  {
+            if let destination = segue.destination as? ViewControllerSecondary{
                 destination.customTitle = "Grey color"
+                destination.color = self.colorSeted
             }
         }
-        if segue.identifier == "VCGreen" {
-            if let destination = segue.destination as? ViewControllerGreen{
-                destination.customTitle = "Green color"
-            }
-        }
-        if segue.identifier == "VCPink" {
-            if let destination = segue.destination as? ViewControllerPink{
-                destination.customTitle = "Pink color"
-                }
-            }
-        }
+    }
 }
